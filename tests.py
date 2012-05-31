@@ -1,10 +1,9 @@
+# -*- coding: utf-8 -*-
 """
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
+Unit tests for {{ app_name|title }} Django application.
 
-Replace this with more appropriate tests for your application.
+To check if tests pass run: `manage.py test`
 """
-
 from django.test import TestCase
 
 
