@@ -1,18 +1,25 @@
 # -*- coding: utf-8 -*-
 """
 Views for {{ app_name|title }} Django application.
+
+.. seealso::
+    http://docs.djangoproject.com/en/1.4/ref/class-based-views/
 """
-from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404
+from django.views.generic import TemplateView
 
 from {{ app_name }} import models
 
 
 # Replace the following example with your views.
 
-def home(req):
+class HomeView(TemplateView):
     """View for `home` page."""
-    {{ app_name }} = get_object_or_404(models.{{ app_name|title }}, name='home')
-    return render_to_response('{{ app_name }}/home.html', {
-        '{{ app_name }}': {{ app_name }},
-    })
+
+    template_name = '{{ app_name }}/home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['{{ app_name }}'] = get_object_or_404(models.{{ app_name|title }}, name='home')
+        return context
 
